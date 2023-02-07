@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class MongoApplicationTests {
@@ -29,6 +29,13 @@ class MongoApplicationTests {
 				new Book(958, "Luis", "Valdez", "U212131321K"))
 				.collect(Collectors.toList()));
 		assertEquals(2, bookRepository.findAll().size());
+	}
+
+	@Test
+	public void deleteBookTest() {
+		Book book = new Book(376, "Carlos", "Torrento", "1235212111");
+		bookService.delete(book);
+		verify(bookRepository, times(1)).delete(book);
 	}
 
 }

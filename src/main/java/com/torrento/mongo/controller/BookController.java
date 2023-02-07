@@ -20,6 +20,6 @@ public class BookController {
 
     @PostMapping("save")
     public void saveBook(@RequestBody Book book){
-       bookService.saveDocument(book);
+       bookService.save(book);
     }
 }
